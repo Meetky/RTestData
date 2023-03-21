@@ -1,0 +1,26 @@
+text:
+  - ""
+imageURL:
+  - "https://files.raykite.com/raydata/20201223/image/fa8e64b8f31b4ffc82f394e31eb9c7e4.png"
+  - "https://files.raykite.com/raydata/20201216/image/654cf43e828948bcb3afdd54921c7e4b.png"
+  - "https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF"
+  - "https://t7.baidu.com/it/u=1951548898,3927145&fm=193&f=GIF"
+  - "https://t7.baidu.com/it/u=3601447414,1764260638&fm=193&f=GIF"
+  - "https://lupic.cdn.bcebos.com/20210629/894824_14.jpg"
+  - "https://up.enterdesk.com/edpic/8c/65/a7/8c65a7cf01eb9f41ed2f7cc9ed109383.jpg"
+  - "https://files.raykite.com/raydata/pre/20211215/image/fb8c85de0605469281ad340b2d3c6bcf.png"
+
+videoURL:
+  - "https://files.raykite.com/raydata/pre/20210714/image/eaf3a7382e1b4349921f535d957915b4.mp4"
+  - "https://vd3.bdstatic.com/mda-mep4asirxmkxz7su/fhd/cae_h264_nowatermark/1621825631043065076/mda-mep4asirxmkxz7su.mp4"
+  - "https://vd3.bdstatic.com/mda-meq1akfy9ysvtwzg/fhd/cae_h264_nowatermark/1621904327996440395/mda-meq1akfy9ysvtwzg.mp4"
+  - "https://vd2.bdstatic.com/mda-meq3fq5t7iixvqyy/sc/cae_h264_clips/1621909787503106541/mda-meq3fq5t7iixvqyy.mp4"
+  - "https://files.raykite.com/raydata/test/20211209/video/60797a8403c2424e8b55e1df49b508b3.mp4"
+
+videoFlowing:
+  - "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8"
+  - "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8"
+  - "http://kbs-dokdo.gscdn.com/dokdo_300/_definst_/dokdo_300.stream/playlist.m3u8"
+  - "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"
+  - "https://unicom4.fdamclz.com:50001/live/mq291b3520000426.m3u8?mkSecret=4f19ed8e84c6f6ef83ab7f142fed20b7&mkTime=1601361653"
+  - "https://api.dogecloud.com/player/get.m3u8?vcode=5ac682e6f8231991&userId=17&ext=.m3u8"

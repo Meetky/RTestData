@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postMessage</title>
+</head>
+
+<body>
+    <button id='sendFn'>发送请求0</button>
+    <button id='sendFn1'>发送请求1</button>
+    <button id='sendFn2'>发送请求2</button>
+    <button id='sendFn3'>发送请求3</button>
+    <button id='sendFn4'>发送请求4</button>
+    <a href="https://www.baidu.com" target="_blank">https://www.baidu.com</a>
+    <div style="color: aqua;">111111111111111111111111</div>
+    <p id='text'></p>
+    <script>
+        let sender = null;
+        let url = '';
+        let n = 1;
+
+        window.addEventListener('message', function (event) {
+            // alert(e.source, window.parent)
+            console.log('http://127.0.0.1:5500/:接收消息', event)
+            // document.getElementById('text').innerHTML = JSON.stringify(event.source) + ' : ' + JSON.stringify(window.parent);
+            if (event.source != window.parent) return;
+
+            // event.source.postMessage('子组件返回数据', 'http://10.10.10.90:8899/');
+            // send(event)
+
+            sender = event
+            url = event.origin
+        }, false);
+
+        let btn = document.getElementById('sendFn');
+        let btn1 = document.getElementById('sendFn1');
+        let btn2 = document.getElementById('sendFn2');
+        let btn3 = document.getElementById('sendFn3');
+        let btn4 = document.getElementById('sendFn4');
+
+        btn.addEventListener('click', function () {
+            n++
+            sender.source.postMessage({
+                original: '改变名字' + n,
+                ori: 0,
+                fuzhi: "2",
+                tubiao: 1,
+                time: "2021-05-24 11:20:00",
+            }, url);
+        }, false)
+
+        btn1.addEventListener('click', function () {
+            n++
+            window.parent.postMessage({
+                original: '改变名字' + n,
+                ori: 1,
+                fuzhi: "1",
+                tubiao: '3',
+                time: "2021-05-23 12:30:00",
+            }, url);
+        }, false)
+
+        btn2.addEventListener('click', function () {
+            n++
+            window.parent.postMessage({
+                original: '改变名字' + n,
+                ori: 2,
+                fuzhi: "4",
+                tubiao: '4',
+                time: "2021-05-22 13:40:33",
+            }, url);
+        }, false)
+
+        btn3.addEventListener('click', function () {
+            n++
+            window.parent.postMessage({
+                original: '改变名字' + n,
+                ori: 3,
+                fuzhi: "4",
+                tubiao: '4',
+                time: "2021-05-22 13:40:33",
+            }, url);
+        }, false)
+
+        btn4.addEventListener('click', function () {
+            n++
+            window.parent.postMessage({
+                original: '改变名字' + n,
+                ori: 4,
+                fuzhi: "4",
+                tubiao: '4',
+                time: "2021-05-22 13:40:33",
+            }, url);
+        }, false)
+
+        // setInterval(() => {
+        //     if (sender) {
+        //         sender.source.postMessage({
+        //             original: '改变名字' + n,
+        //             ori: 'thank you' + n,
+        //             fuzhi: "2",
+        //         }, url);
+        //     }
+        // }, 100)
+    </script>
+
+    <!-- <script>
+        let data = {
+            "code": "0",
+            "msg": "OK",
+            "data": [
+                {
+                    "title": "tab1",
+                    "cname": "类别总称",
+                    "series": [
+                        {
+                            "sid": 1,
+                            "name": "系列1",
+                            "unit": "单位1"
+                        },
+                        {
+                            "sid": 2,
+                            "name": "系列2",
+                            "unit": "单位2"
+                        },
+                        {
+                            "sid": 3,
+                            "name": "系列3",
+                            "unit": "单位3"
+                        }
+                    ],
+                    "data": [
+                        {
+                            "from": 1,
+                            "id": 1,
+                            "x": "名称1",
+                            "y": 4
+                        },
+                        {
+                            "from": 1,
+                            "id": 2,
+                            "x": "名称2",
+                            "y": 4
+                        },
+                        {
+                            "from": 1,
+                            "id": 3,
+                            "x": "名称3",
+                            "y": 4
+                        },
+                        {
+                            "from": 2,
+                            "id": 1,
+                            "x": "名称4",
+                            "y": 5
+                        },
+                        {
+                            "from": 2,
+                            "id": 2,
+                            "x": "名称5",
+                            "y": 5
+                        },
+                        {
+                            "from": 2,
+                            "id": 3,
+                            "x": "名称6",
+                            "y": 5
+                        },
+                        {
+                            "from": 3,
+                            "id": 1,
+                            "x": "名称7",
+                            "y": 6
+                        },
+                        {
+                            "from": 3,
+                            "id": 2,
+                            "x": "名称8",
+                            "y": 6
+                        },
+                        {
+                            "from": 3,
+                            "id": 3,
+                            "x": "名称9",
+                            "y": 6
+                        }
+                    ]
+                }
+            ]
+        }
+        let args = {
+            flag: '2'
+        }
+
+        for (var i = 0; i < data.data.length; i++) {
+            var d = data.data[i];
+
+            for (var j = 0; j < d.data.length; j++) {
+                var s = d.data[j]
+                if (s.id < args.flag) {
+                    d.data.splice(j, 1)
+                }
+            }
+        }
+
+        console.log(data)
+
+    </script> -->
+</body>
+
+</html>
