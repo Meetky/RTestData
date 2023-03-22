@@ -97,7 +97,7 @@ class DataBase:
         return title
 
     def get_2d_resource(self):
-        with open(os.path.join(BASE_PATH, r"datas\resource.yml")) as f:
+        with open(os.path.join(BASE_PATH, r"datas/resource.yml")) as f:
             data = yaml.safe_load(f)
             text = random.choice(data['text'])
             imgUrl = random.choice(data['imageURL'])
@@ -122,5 +122,6 @@ class DataBase:
 if __name__ == '__main__':
     db = DataBase()
     # db.get_2d_resource()
+    print(db.get_2d_resource())
     print(db.generation_draw_path(3))
     print(db.generation_lat_lng_bj())
