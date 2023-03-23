@@ -63,6 +63,31 @@ def form(request):
         return HttpResponse(json.dumps(form_.page_data, ensure_ascii=False))
 
 
+@csrf_exempt
+def form_user(request):
+    # with open(r'./my_api/datas/tabulation.json', encoding="utf-8") as f:
+    #     dic = json.load(f)
+    # if request.method == 'GET':
+    #     return HttpResponse(json.dumps(dic))
+    # else:
+    #     dic['msg'] = '方法错误'
+    #     return HttpResponse(json.dumps(dic, ensure_ascii=False))
+    form_ = GenerationForm()
+    if request.method == 'GET' or request.method == 'POST':
+        try:
+            a = int(request.GET.get('a'))
+            if a == 0:
+                raise ValueError
+            form_.main_user(a)
+            return HttpResponse(json.dumps(form_.page_data))
+        except:
+            form_.main_user(random.randint(1, 50))
+            return HttpResponse(json.dumps(form_.page_data))
+    else:
+        form_.page_data['code'] = '10000'
+        form_.page_data["msg"] = "方法错误"
+        return HttpResponse(json.dumps(form_.page_data, ensure_ascii=False))
+
 # @csrf_exempt
 # def area(request):
 #     """

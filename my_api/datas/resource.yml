@@ -24,3 +24,4 @@ videoFlowing:
   - "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"
   - "https://unicom4.fdamclz.com:50001/live/mq291b3520000426.m3u8?mkSecret=4f19ed8e84c6f6ef83ab7f142fed20b7&mkTime=1601361653"
   - "https://api.dogecloud.com/player/get.m3u8?vcode=5ac682e6f8231991&userId=17&ext=.m3u8"
+  - "https://bonappetit-samsung.amagi.tv/playlist.m3u8"
