@@ -54,6 +54,30 @@ class GenerationForm(DataBase):
                 }
             }
         }
+        self.u_data = {
+            "0": {
+                "cells": {
+                    "0": {
+                        "text": "姓名"
+                    },
+                    "1": {
+                        "text": "住址"
+                    },
+                    "2": {
+                        "text": "邮箱"
+                    },
+                    "3": {
+                        "text": "生日"
+                    },
+                    "4": {
+                        "text": "国家"
+                    },
+                    "5": {
+                        "text": "联系方式"
+                    }
+                }
+            },
+        }
 
     def main(self, num):
         data = copy.deepcopy(self.data)
@@ -76,3 +100,28 @@ class GenerationForm(DataBase):
         cells["cells"]['3']['text'] = random.randint(1, 9999)
         cells["cells"]['4']['text'] = random.choice([-1, 1])
         return cells
+
+    def cells_user(self):
+        cells = {
+            "cells": {}
+        }
+        # 生成用户数据
+        u_list = [value for value in self.generate_personal_information().values()]
+        # 生成一个用户对象
+        for cell in range(6):
+            cells["cells"][f"{cell}"] = {"text": u_list[cell]}
+        return cells
+
+    def main_user(self, num):
+        data = copy.deepcopy(self.u_data)
+        for n in range(1, num + 1):
+            data[str(n)] = self.cells_user()
+        self.page_data["data"] = data
+        self.page_data["total"] = num
+        return self.page_data
+
+
+if __name__ == '__main__':
+    print("--------test--------")
+    g = GenerationForm()
+    print(g.main_user(2))

@@ -122,6 +122,5 @@ class DataBase:
 if __name__ == '__main__':
     db = DataBase()
     # db.get_2d_resource()
-    print(db.get_2d_resource())
-    print(db.generation_draw_path(3))
-    print(db.generation_lat_lng_bj())
+    print(db.generate_personal_information())
+
