@@ -98,8 +98,8 @@ class DataBase:
         return title
 
     def get_2d_resource(self):
-        page_list = [30, 60, 90, 120, 150, 180, 210, 240]
-        imgUrls = requests.get(f"https://image.so.com/zjl?sn={str(random.choice(page_list))}&ch=copyright").json()["list"]
+        page_list = [30, 60, 90, 120, 150, 180]
+        imgUrls = requests.get(f"https://image.so.com/zjl?sn={random.choice(page_list)}&ch=copyright").json()["list"]
         with open(os.path.join(BASE_PATH, r"datas/resource.yml")) as f:
             data = yaml.safe_load(f)
             text = random.choice(data['text'])
