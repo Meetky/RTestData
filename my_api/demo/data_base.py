@@ -9,6 +9,7 @@ import copy
 import random
 import os
 from faker import Faker
+import requests
 
 import yaml
 
@@ -97,10 +98,12 @@ class DataBase:
         return title
 
     def get_2d_resource(self):
+        page_list = [30, 60, 90, 120, 150, 180, 210, 240]
+        imgUrls = requests.get(f"https://image.so.com/zjl?sn={str(random.choice(page_list))}&ch=copyright").json()["list"]
         with open(os.path.join(BASE_PATH, r"datas/resource.yml")) as f:
             data = yaml.safe_load(f)
             text = random.choice(data['text'])
-            imgUrl = random.choice(data['imageURL'])
+            imgUrl = random.choice(imgUrls)["imgurl"]
             video = random.choice(data['videoURL'])
             vFlowing = random.choice(data['videoFlowing'])
             return text, imgUrl, video, vFlowing
@@ -121,6 +124,5 @@ class DataBase:
 
 if __name__ == '__main__':
     db = DataBase()
-    # db.get_2d_resource()
-    print(db.generate_personal_information())
-
+    # print(db.generate_personal_information())
+    print(db.get_2d_resource())
