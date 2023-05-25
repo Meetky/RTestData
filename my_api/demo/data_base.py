@@ -27,7 +27,6 @@ class DataBase:
             "data": []
         }
         self.title = ""
-        self.img_list = self.__get_imgs()
 
     def get_city(self):
         all_city = [
@@ -98,23 +97,19 @@ class DataBase:
             title += bytes.fromhex(val).decode('gb2312')
         return title
 
-    def __get_imgs(self):
-        page_list = [30, 60, 90, 120, 150, 180]
-        imgUrls = requests.get(f"https://image.so.com/zjl?sn={random.choice(page_list)}&ch=copyright").json()["list"]
-        return imgUrls
-
     def get_2d_resource(self):
         page_list = [30, 60, 90, 120, 150, 180]
         imgUrls = requests.get(f"https://image.so.com/zjl?sn={random.choice(page_list)}&ch=copyright").json()["list"]
         with open(os.path.join(BASE_PATH, r"datas/resource.yml")) as f:
             data = yaml.safe_load(f)
             text = random.choice(data['text'])
-            imgUrl = random.choice(self.img_list)["imgurl"]
+            imgUrl = random.choice(imgUrls)["imgurl"]
             video = random.choice(data['videoURL'])
             vFlowing = random.choice(data['videoFlowing'])
             return text, imgUrl, video, vFlowing
 
     def generate_personal_information(self):
+
         # Generate data
         one_data = {
             "name": self.fake.name(),
