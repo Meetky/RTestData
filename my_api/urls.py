@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     url('admin/', admin.site.urls),
     # 推荐这种方法:url地址这样写/info?p1=123,获取数据用request.GET.get('p1')
+    url(r"token/", views.get_token, name="获取token"),
     url(r'form/', views.form, name='表格'),
     url(r'formU/', views.form_user, name='表格_用户信息'),
     url(r'tabulation/', views.tabulation, name='表格默认数据'),

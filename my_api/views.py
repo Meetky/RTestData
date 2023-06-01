@@ -88,6 +88,7 @@ def form_user(request):
         form_.page_data["msg"] = "方法错误"
         return HttpResponse(json.dumps(form_.page_data, ensure_ascii=False))
 
+
 # @csrf_exempt
 # def area(request):
 #     """
@@ -101,6 +102,22 @@ def form_user(request):
 #         dic['code'] = '10000'
 #         dic['msg'] = '方法错误'
 #         return HttpResponse(json.dumps(dic, ensure_ascii=False))
+
+@csrf_exempt
+def get_token(request):
+    result = {"token": ""}
+    if len(request.path_info) >= 800:
+        result["token"] = request.path_info.split("/")[-1]
+        return HttpResponse(json.dumps(result))
+    if request.method == "GET":
+        token = request.GET.get("token", default="null")
+    elif request.method == "POST":
+        if "application/json" in request.headers["content-Type"]:
+            token = json.loads(request.body.decode())["token"]
+        elif "application/x-www-form-urlencoded" in request.headers["content-Type"]:
+            token = request.POST.get("token", "")
+    result["token"] = token
+    return HttpResponse(json.dumps(result))
 
 
 def eq(request):
@@ -179,6 +196,7 @@ def sign_data(request):
         gen.page_data['code'] = '10000'
         gen.page_data["msg"] = "方法错误"
         return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
+
 
 @csrf_exempt
 def sign1_data(request):
