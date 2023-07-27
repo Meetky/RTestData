@@ -106,18 +106,26 @@ def form_user(request):
 @csrf_exempt
 def get_token(request):
     result = {"token": ""}
+    token = "token获取异常，请重试"
     if len(request.path_info) >= 800:
         result["token"] = request.path_info.split("/")[-1]
         return HttpResponse(json.dumps(result))
     if request.method == "GET":
-        token = request.GET.get("token", default="null")
+        token = request.GET.get("token", default="token获取异常，请重试")
     elif request.method == "POST":
         if "application/json" in request.headers["content-Type"]:
+            print("body:>>>>>", request.body.decode(), "<<<<<")
             token = json.loads(request.body.decode())["token"]
         elif "application/x-www-form-urlencoded" in request.headers["content-Type"]:
             token = request.POST.get("token", "")
     result["token"] = token
     return HttpResponse(json.dumps(result))
+
+
+def get_data(request):
+    data = {"data": ""}
+    data["data"] = request.path_info.split("/")[-1]
+    return HttpResponse(json.dumps(data))
 
 
 def eq(request):
