@@ -70,9 +70,13 @@ class GenerationBJ(DataBase):
             self.data["city"] = "北京市"
             self.data["value"] = random.randint(100, 999)
             self.data["content"] = self.GBK2312(200)
+            self.data["content2"] = self.GBK2312(200)
+            self.data["content3"] = self.GBK2312(200)
             self.data["videoUrl"] = self.get_2d_resource()[2]
             self.data["imageUrl"] = self.get_2d_resource()[1]
             self.data["subTitle"], self.data["title"] = self.GBK2312(6), self.GBK2312(6)
+            self.data["subTitle2"], self.data["title2"] = self.GBK2312(6), self.GBK2312(6)
+            self.data["subTitle3"], self.data["title3"] = self.GBK2312(6), self.GBK2312(6)
             self.data["coordinate"]["lat"], self.data["coordinate"]["lng"] = (39.73920626339363, 116.44766778161552)
             # 加入数据
             self.page_data["data"].append(self.data)

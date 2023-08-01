@@ -15,4 +15,4 @@
 if __name__ == '__main__':
     import os
 
-    os.system("python manage.py runserver 0.0.0.0:5678")
+    os.system("python manage.py runserver 0.0.0.0:5688")
