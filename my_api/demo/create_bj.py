@@ -51,7 +51,7 @@ class GenerationBJ(DataBase):
             self.data = copy.deepcopy(self.data)
             self.data["unit"] = self.GBK2312(2)
             self.data["id"] = i
-            self.data["city"] = self.get_city()
+            self.data["cityName"] = self.get_city()
             self.data["value"] = random.randint(100, 999)
             self.data["content"] = self.GBK2312(200)
             self.data["content2"] = self.GBK2312(200)
@@ -75,7 +75,7 @@ class GenerationBJ(DataBase):
             self.data = copy.deepcopy(self.data)
             self.data["unit"] = self.GBK2312(2)
             self.data["id"] = i
-            self.data["city"] = "北京市"
+            self.data["cityName"] = "北京市"
             self.data["value"] = random.randint(100, 999)
             self.data["content"] = self.GBK2312(200)
             self.data["content2"] = self.GBK2312(200)
