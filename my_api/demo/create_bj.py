@@ -16,10 +16,14 @@ class GenerationBJ(DataBase):
         self.data = {
             "unit": "",
             "subTitle": "",
+            "subTitle2": "",
+            "subTitle3": "",
             "id": "a444",
             "title": "崇文区",
             "value": "1062",
             "content": "a内容文本4",
+            "content2": "a内容文本4",
+            "content3": "a内容文本4",
             "imageUrl": "",
             "videoUrl": "",
             "coordinate": {
@@ -50,9 +54,13 @@ class GenerationBJ(DataBase):
             self.data["city"] = self.get_city()
             self.data["value"] = random.randint(100, 999)
             self.data["content"] = self.GBK2312(200)
+            self.data["content2"] = self.GBK2312(200)
+            self.data["content3"] = self.GBK2312(200)
             self.data["videoUrl"] = self.get_2d_resource()[2]
             self.data["imageUrl"] = self.get_2d_resource()[1]
             self.data["subTitle"], self.data["title"] = self.GBK2312(6), self.GBK2312(6)
+            self.data["subTitle2"], self.data["title"] = self.GBK2312(6), self.GBK2312(6)
+            self.data["subTitle3"], self.data["title"] = self.GBK2312(6), self.GBK2312(6)
             self.data["coordinate"]["lat"], self.data["coordinate"]["lng"] = self.generation_lat_lng_bj()
             # 加入数据
             self.page_data["data"].append(self.data)
