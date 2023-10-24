@@ -124,13 +124,16 @@ def get_token(request):
 
 @csrf_exempt
 def get_data(request):
-    data = {"data": ""}
+    data = {}
     if request.method == "GET":
-        data["data"] = request.path_info.split("/")[-1]
+        if bool(request.GET):
+            for key in request.GET.keys():
+                data[key] = request.GET[key]
+        else:
+            data["data"] = request.path_info.split("/")[-1]
         return HttpResponse(json.dumps(data))
     elif request.method == "POST":
         return HttpResponse(request.body)
-
 
 
 def eq(request):
