@@ -18,6 +18,10 @@ class Generation3DData(DataBase):
             "id": None,
             "coordinate": {}
         }
+        self.data_ = {
+            "id": None,
+            "position": {}
+        }
 
     def particle(self, num):
         for n in range(num):
@@ -40,21 +44,30 @@ class Generation3DData(DataBase):
         self.page_data["total"] = num
         return self.page_data
 
+    def trajectory(self, num):
+        for n in range(num):
+            data = copy.deepcopy(self.data_)
+            data["id"] = n
+            data["position"]["x"], data["position"]["y"], data["position"]["z"] = self.generation_x_y_z()
+            self.page_data["data"].append(data)
+        self.page_data["total"] = num
+        return self.page_data
+
 
 if __name__ == '__main__':
     gen = Generation3DData()
-    print(gen.hot_chart(30))
-    # import wmi
+    print(gen.trajectory(3))
+    # # import wmi
+    # #
+    # # Pc = wmi.WMI()
+    # # os_info = Pc.Win32_OperatingSystem()[0]
+    # # os_name = os_info.Name.encode('utf-8').split(b'|')[0]
+    # #
+    # # print(f'操作系统: {os_name.decode()}')
+    # import json
     #
-    # Pc = wmi.WMI()
-    # os_info = Pc.Win32_OperatingSystem()[0]
-    # os_name = os_info.Name.encode('utf-8').split(b'|')[0]
-    #
-    # print(f'操作系统: {os_name.decode()}')
-    import json
-
-    with open(r"C:\Users\RAYDATA\Desktop\test.json", "r") as f:
-        data = f.read()
-        for item in eval(data):
-            item["count"] = int(item["count"])
-            print(item)
+    # with open(r"C:\Users\RAYDATA\Desktop\test.json", "r") as f:
+    #     data = f.read()
+    #     for item in eval(data):
+    #         item["count"] = int(item["count"])
+    #         print(item)

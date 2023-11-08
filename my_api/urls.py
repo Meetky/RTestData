@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'polygon_area', views.polygon_area, "多边形区域"),
     url(r'particle', views.particle, name="粒子图"),
     url(r'hot', views.hot_chart, name="热区"),
+    url(r'trajectory', views.trajectory, name="轨迹"),
     url(r'res', views.get_2d_resource, name="2d资源"),
     url(r'timer', views.timer_shaft, name="时间轴"),
 ]

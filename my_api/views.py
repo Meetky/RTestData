@@ -384,6 +384,28 @@ def particle(request):
         return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
 
 
+
+def trajectory(request):
+    """
+        轨迹
+    """
+    gen = Generation3DData()
+    if request.method == 'GET' or request.method == 'POST':
+        try:
+            a = int(request.GET.get('a'))
+            if a < 1:
+                raise ValueError
+            gen.trajectory(a)
+            return HttpResponse(json.dumps(gen.page_data))
+        except:
+            gen.trajectory(random.randint(100, 1000))
+            return HttpResponse(json.dumps(gen.page_data))
+    else:
+        gen.page_data["msg"] = "方法错误"
+        gen.page_data["code"] = "10000"
+        return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
+
+
 @csrf_exempt
 def hot_chart(request):
     """
