@@ -18,10 +18,6 @@ class Generation3DData(DataBase):
             "id": None,
             "coordinate": {}
         }
-        self.data_ = {
-            "id": None,
-            "position": {}
-        }
 
     def particle(self, num):
         for n in range(num):
@@ -46,9 +42,9 @@ class Generation3DData(DataBase):
 
     def trajectory(self, num):
         for n in range(num):
-            data = copy.deepcopy(self.data_)
+            data = copy.deepcopy(self.data)
             data["id"] = n
-            data["position"]["x"], data["position"]["y"], data["position"]["z"] = self.generation_x_y_z()
+            data["x"], data["y"], data["z"] = self.generation_x_y_z()
             self.page_data["data"].append(data)
         self.page_data["total"] = num
         return self.page_data

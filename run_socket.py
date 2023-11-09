@@ -4,7 +4,7 @@ import socket
 socket_server = socket.socket()
 
 # 绑定 socket_server到指定的ip地址
-socket_server.bind(("localhost", 8888))
+socket_server.bind(("0.0.0.0", 7071))
 
 # 监听端口, listen()内书写数字，表示可以接受链接的数量
 socket_server.listen(1)
