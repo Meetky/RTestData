@@ -90,9 +90,9 @@ class DataBase:
         return city_list, coordinates_list
 
     def generation_x_y_z(self):
-        x = random.uniform(-74.41405, 52.52605)
-        y = random.uniform(0.1001283, 0.100133546)
-        z = random.uniform(40.5661278, -28.991787)
+        x = round(random.uniform(-74.41405, 52.52605), 5)
+        y = round(random.uniform(0.5001283, 0.500133546), 9)
+        z = round(random.uniform(40.5661278, -30.0802727), 7)
         return x, y, z
 
     def GBK2312(self, num):
