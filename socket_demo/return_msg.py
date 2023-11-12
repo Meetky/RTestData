@@ -18,6 +18,7 @@ def return_msg(client_msg):
         "标记": "返回3d标记数据",
         "飞线": "返回3d飞线数据"
     }
+    print(client_msg)
     # if not str(client_msg) or str(client_msg) == "" or str(client_msg) == " ":
     #     return json.dumps(default)
     if str(client_msg) == "2d":
