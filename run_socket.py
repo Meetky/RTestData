@@ -10,7 +10,6 @@ socket_server.bind(("localhost", 8888))
 socket_server.listen(1)
 
 while True:
-
     # 等待客户端连接，接收到的 result是一个二元元组, accept()是一个阻塞的方法，如果没有连接不会往下执行
     result = socket_server.accept()
     conn = result[0]  # 客户端连接对象
