@@ -136,6 +136,13 @@ def get_data(request):
         return HttpResponse(request.body)
 
 
+@csrf_exempt
+def random_number(request):
+    return HttpResponse(json.dumps({
+        "data": random.randint(0, 100)
+    }))
+
+
 def eq(request):
     try:
         url_parse = int(request.path_info[1:-1].split("g")[-1])
@@ -382,7 +389,6 @@ def particle(request):
         gen.page_data["msg"] = "方法错误"
         gen.page_data["code"] = "10000"
         return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
-
 
 
 def trajectory(request):
