@@ -1,5 +1,6 @@
 import socket
-from socket_demo import return_msg as res
+
+from ..socket_demo.return_msg import return_msg as res
 
 # 创建 socket对象
 socket_server = socket.socket()
