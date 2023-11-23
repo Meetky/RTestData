@@ -19,16 +19,20 @@ class SocketServer():
             conn = result[0]  # 客户端连接对象
             address = result[1]  # 客户端地址信息
             print(f"接收到的客户端连接信息为{address}")
-            # 接收客户端信息，recv接受的参数是缓冲区大小，一般1024即可，返回的是一个字节数组，bytes对象，不是字符串，再将其decode解码为字符串对象
-            data = conn.recv(1024).decode("UTF-8")
-
-            print(f"客户端发来的消息是:{data}")
-            # 回复消息
-            # msg = input("请输入回复的消息:")
-            # msg = "hello client!"
-            msg = res.return_msg(data)
-            if msg == 'exit':
-                break
+            data = ""
+            try:
+                # 接收客户端信息，recv接受的参数是缓冲区大小，一般1024即可，返回的是一个字节数组，bytes对象，不是字符串，再将其decode解码为字符串对象
+                data = conn.recv(1024).decode("UTF-8")
+                print(f"客户端发来的消息是:{data}")
+            except Exception as e:
+                print(e)
+            finally:
+                # 回复消息
+                # msg = input("请输入回复的消息:")
+                # msg = "hello client!"
+                msg = res.return_msg(data)
+                if msg == 'exit':
+                    break
 
             conn.send(msg.encode("UTF-8"))
             print(f"回复内容是：{msg}")
