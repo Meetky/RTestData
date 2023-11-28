@@ -411,6 +411,27 @@ def trajectory(request):
         gen.page_data["code"] = "10000"
         return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
 
+@csrf_exempt
+def pipeline_data(request):
+    """
+        自由标记
+    """
+    gen = Generation3DData()
+    if request.method == 'GET' or request.method == 'POST':
+        try:
+            a = int(request.GET.get('a'))
+            if a == 0:
+                raise ValueError
+            gen.pipeline(a)
+            return HttpResponse(json.dumps(gen.page_data))
+        except:
+            gen.pipeline(random.randint(1, 50))
+            return HttpResponse(json.dumps(gen.page_data))
+    else:
+        gen.page_data['code'] = '10000'
+        gen.page_data["msg"] = "方法错误"
+        return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
+
 
 @csrf_exempt
 def hot_chart(request):

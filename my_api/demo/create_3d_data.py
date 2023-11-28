@@ -49,10 +49,25 @@ class Generation3DData(DataBase):
         self.page_data["total"] = num
         return self.page_data
 
+    def pipeline(self, num):
+        for n in range(num):
+            # data = copy.deepcopy(self.data)
+            data = {}
+            data["id"] = n
+            data["PipelineColor"] = "1-0-#000000"
+            data["Pipelinethickness"] = round(random.uniform(0.0, 1.0), 1)
+            data["SweepSwitch"] = random.choice(["on", "off"])
+            data["SweepColor"] = "1-0-#FFF000"
+            data["Sweepdirection"] = random.choice(["forward", "backward"])
+            data["Sweeprate"] = random.randint(1, 100)
+            self.page_data["data"].append(data)
+        self.page_data["total"] = num
+        return self.page_data
+
 
 if __name__ == '__main__':
     gen = Generation3DData()
-    print(gen.trajectory(3))
+    print(gen.pipeline(3))
     # # import wmi
     # #
     # # Pc = wmi.WMI()
