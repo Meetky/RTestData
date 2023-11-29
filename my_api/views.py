@@ -419,13 +419,13 @@ def pipeline_data(request):
     gen = Generation3DData()
     if request.method == 'GET' or request.method == 'POST':
         try:
-            a = int(request.GET.get('a'))
-            if a == 0:
-                raise ValueError
-            gen.pipeline(a)
+            # a = int(request.GET.get('a'))
+            # if a == 0:
+            #     raise ValueError
+            gen.pipeline()
             return HttpResponse(json.dumps(gen.page_data))
         except:
-            gen.pipeline(random.randint(1, 50))
+            gen.pipeline()
             return HttpResponse(json.dumps(gen.page_data))
     else:
         gen.page_data['code'] = '10000'
