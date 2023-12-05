@@ -19,11 +19,9 @@ def localSsh(command):
         out, err = p.communicate()
         # out: commit 结果
         # err: pull、push 结果
-        print("out:", out.decode("utf-8"))
-        print("err:", err.decode("utf-8"))
-        out_data = data_form.format("本地服务器", out.decode("utf-8"))
-        err_data = data_form.format("本地服务器", err.decode("utf-8"))
-        return True, start_data + "\n" + out_data + "\n" + err_data
+        result_data = data_form.format("本地服务器", out.decode("utf-8") + err.decode("utf-8"))
+        print(result_data)
+        return True, start_data + "\n" + result_data
     except Exception as e:
         print(e)
         return False, start_data + "\n" + str(e)
@@ -81,9 +79,6 @@ def write_log(data):
 
 def main(start_time, local_command, remote_ip, remote_port, remote_user, remote_password, remote_command):
     local_result = localSsh(local_command)
-    print("------测试代码------")
-    print(local_result)
-    print("------测试代码------")
     if local_result[0]:
         remote_result = remoteSsh(sys_ip=remote_ip, username=remote_user,
                                   command=remote_command, password=remote_password,
