@@ -17,15 +17,13 @@ def localSsh(command):
                   stdout=PIPE,
                   stderr=PIPE, shell=True)
         # out, err = p.communicate()
-        out = p.stdout.read().decode("utf-8")
-        err = p.stderr.read().decode("utf-8")
-        print("out:", out)
-        print("err:", err)
-        if err != "":
-            result_data = data_form.format("本地服务器", err)
+        print(p.stdout.read().decode("utf-8"))
+        print(p.stderr.read().decode("utf-8"))
+        if p.stderr.read().decode("utf-8") != "":
+            result_data = data_form.format("本地服务器", p.stderr.read().decode("utf-8"))
             print(result_data)
             return False, start_data + "\n" + result_data
-        result_data = data_form.format("本地服务器", out)
+        result_data = data_form.format("本地服务器", p.stdout.read().decode("utf-8"))
         print(result_data)
         return True, start_data + "\n" + result_data
     except Exception as e:
