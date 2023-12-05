@@ -1,7 +1,10 @@
+"""
+    自动提交代码
+"""
 import time
+from subprocess import PIPE, Popen
 
 import paramiko
-from subprocess import PIPE, Popen
 
 
 def localSsh(command):
@@ -14,15 +17,12 @@ def localSsh(command):
                   stdout=PIPE,
                   stderr=PIPE, shell=True)
         # out, err = p.communicate()
-        # print(bool(out))
-        # print(bool(err))
-        print(p.stdout.read().decode("utf-8"))
-        print(p.stderr.read().decode("utf-8"))
-        if p.stderr.read().decode("utf-8") != "":
-            result_data = data_form.format("本地服务器", p.stderr.read().decode("utf-8"))
+        out, err = p.stdout.read().decode("utf-8"), p.stderr.read().decode("utf-8")
+        if err != "":
+            result_data = data_form.format("本地服务器", err)
             print(result_data)
             return False, start_data + "\n" + result_data
-        result_data = data_form.format("本地服务器", p.stdout.read().decode("utf-8"))
+        result_data = data_form.format("本地服务器", out)
         print(result_data)
         return True, start_data + "\n" + result_data
     except Exception as e:
