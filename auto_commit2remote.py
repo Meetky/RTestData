@@ -19,6 +19,8 @@ def localSsh(command):
         # out, err = p.communicate()
         out = p.stdout.read().decode("utf-8")
         err = p.stderr.read().decode("utf-8")
+        print("out:", out)
+        print("err:", err)
         if err != "":
             result_data = data_form.format("本地服务器", err)
             print(result_data)
