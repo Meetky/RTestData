@@ -78,6 +78,9 @@ def write_log(data):
 
 def main(start_time, local_command, remote_ip, remote_port, remote_user, remote_password, remote_command):
     local_result = localSsh(local_command)
+    print("------测试代码------")
+    print(local_result)
+    print("------测试代码------")
     if local_result[0]:
         remote_result = remoteSsh(sys_ip=remote_ip, username=remote_user,
                                   command=remote_command, password=remote_password,
