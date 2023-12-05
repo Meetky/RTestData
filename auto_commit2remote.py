@@ -25,7 +25,7 @@ def localSsh(command):
             return False, start_data + "\n" + result_data
         result_data = data_form.format("本地服务器", out.decode("utf-8"))
         print(result_data)
-        return True, start_data + "\n" + result_data
+        return True, start_data + "\n" + result_data + "\n" 
     except Exception as e:
         print(e)
         return False, start_data + "\n" + str(e)
