@@ -68,6 +68,7 @@ class Generation3DData(DataBase):
             data = copy.deepcopy(self.data)
             data["id"] = n
             data["coordinate"]["lat"], data["coordinate"]["lng"] = self.generation_lat_lng_china()
+            data["positionX"], data["positionY"], data["positionZ"] = self.generation_glb_x_y_z()
             data["rotationX"] = 0
             data["rotationY"] = 0
             data["rotationZ"] = 0

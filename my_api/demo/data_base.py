@@ -106,6 +106,12 @@ class DataBase:
         z = round(random.uniform(40.5661278, -30.0802727), 7)
         return x, y, z
 
+    def generation_glb_x_y_z(self):
+        x = round(random.uniform(-54.66, 22.95), 2)
+        y = 0
+        z = round(random.uniform(33.43, -9.35), 2)
+        return x, y, z
+
     def GBK2312(self, num):
         title = copy.copy(self.title)
         for i in range(num):
