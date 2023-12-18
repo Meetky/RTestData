@@ -411,10 +411,11 @@ def trajectory(request):
         gen.page_data["code"] = "10000"
         return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
 
+
 @csrf_exempt
 def pipeline_data(request):
     """
-        自由标记
+        管线
     """
     gen = Generation3DData()
     if request.method == 'GET' or request.method == 'POST':
@@ -426,6 +427,28 @@ def pipeline_data(request):
             return HttpResponse(json.dumps(gen.page_data))
         except:
             gen.pipeline()
+            return HttpResponse(json.dumps(gen.page_data))
+    else:
+        gen.page_data['code'] = '10000'
+        gen.page_data["msg"] = "方法错误"
+        return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
+
+
+@csrf_exempt
+def glb_skeletal_animation_data(request):
+    """
+        GLB骨骼动画
+    """
+    gen = Generation3DData()
+    if request.method == 'GET' or request.method == 'POST':
+        try:
+            a = int(request.GET.get('a'))
+            if a == 0:
+                raise ValueError
+            gen.glb_skeletal_animation(a)
+            return HttpResponse(json.dumps(gen.page_data))
+        except:
+            gen.glb_skeletal_animation(random.randint(1, 50))
             return HttpResponse(json.dumps(gen.page_data))
     else:
         gen.page_data['code'] = '10000'

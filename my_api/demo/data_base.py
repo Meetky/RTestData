@@ -60,6 +60,17 @@ class DataBase:
         # 南京市溧水区
         # return random.uniform(31.490545, 31.763927), random.uniform(118.895972, 119.062588)
 
+    def generation_lat_lng_china(self):
+        """
+        左上：43.49715542865141              86.44057936860864
+        左下：28.886812893017165             86.44057936860864
+        右上：44.45189320098257              120.95992965514432
+        右下：28.596866736288334             120.9587981149642
+        """
+        # (lat,lng)
+        # 中国板块
+        return random.uniform(28.596866, 44.451893), random.uniform(86.440579, 120.958798)
+
     def generation_fly_line(self):
         """板块飞线数据"""
         cityStart = self.get_city()

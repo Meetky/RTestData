@@ -60,6 +60,29 @@ class Generation3DData(DataBase):
         self.page_data["data"].append(data)
         return self.page_data
 
+    def glb_skeletal_animation(self, num):
+        """
+        GLB骨骼动画
+        """
+        for n in range(num):
+            data = copy.deepcopy(self.data)
+            data["id"] = n
+            data["coordinate"]["lat"], data["coordinate"]["lng"] = self.generation_lat_lng_china()
+            data["rotationX"] = 0
+            data["rotationY"] = 0
+            data["rotationZ"] = 0
+            data["scaleX"] = 0.09
+            data["scaleY"] = 0.09
+            data["scaleZ"] = 0.09
+            data["children"] = [{
+                "id": n,
+                "name": "test"
+            }]
+            self.page_data["data"].append(data)
+
+        self.page_data["total"] = num
+        return self.page_data
+
 
 if __name__ == '__main__':
     gen = Generation3DData()
