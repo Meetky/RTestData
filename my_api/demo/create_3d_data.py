@@ -77,8 +77,15 @@ class Generation3DData(DataBase):
             data["scaleZ"] = 0.09
             data["children"] = [{
                 "id": n,
-                "name": "test"
+                "name": "test",
+                "rotationX": 0,
+                "rotationY": 0,
+                "rotationZ": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "scaleZ": 1
             }]
+            data["children"][0]["positionX"], data["children"][0]["positionY"], data["children"][0]["positionZ"] = self.generation_glb_x_y_z()
             self.page_data["data"].append(data)
 
         self.page_data["total"] = num
@@ -87,7 +94,7 @@ class Generation3DData(DataBase):
 
 if __name__ == '__main__':
     gen = Generation3DData()
-    print(gen.pipeline())
+    print(gen.glb_skeletal_animation(1))
     # # import wmi
     # #
     # # Pc = wmi.WMI()
