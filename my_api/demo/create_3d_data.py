@@ -77,7 +77,7 @@ class Generation3DData(DataBase):
             data["scaleY"] = 0.09
             data["scaleZ"] = 0.09
             data["children"] = [{
-                "id": int(time.time()),
+                "id": "666",
                 "name": "test",
                 "rotationX": random.randint(0, 360),
                 "rotationY": random.randint(0, 360),
