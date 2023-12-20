@@ -78,14 +78,15 @@ class Generation3DData(DataBase):
             data["children"] = [{
                 "id": n,
                 "name": "test",
-                "rotationX": 0,
-                "rotationY": 0,
-                "rotationZ": 0,
+                "rotationX": random.randint(0, 360),
+                "rotationY": random.randint(0, 360),
+                "rotationZ": random.randint(0, 360),
                 "scaleX": 1,
                 "scaleY": 1,
                 "scaleZ": 1
             }]
-            data["children"][0]["positionX"], data["children"][0]["positionY"], data["children"][0]["positionZ"] = self.generation_glb_x_y_z()
+            data["children"][0]["positionX"], data["children"][0]["positionY"], data["children"][0][
+                "positionZ"] = self.generation_glb_x_y_z()
             self.page_data["data"].append(data)
 
         self.page_data["total"] = num
