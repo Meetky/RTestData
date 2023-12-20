@@ -7,6 +7,7 @@
 # @Software :PyCharm
 import copy
 import random
+import time
 
 from my_api.demo.data_base import DataBase
 
@@ -76,7 +77,7 @@ class Generation3DData(DataBase):
             data["scaleY"] = 0.09
             data["scaleZ"] = 0.09
             data["children"] = [{
-                "id": n,
+                "id": int(time.time()),
                 "name": "test",
                 "rotationX": random.randint(0, 360),
                 "rotationY": random.randint(0, 360),
