@@ -52,12 +52,12 @@ class Generation3DData(DataBase):
 
     def pipeline(self):
         data = {}
-        # data["PipelineColor"] = "1-0-#000000"
-        data["Pipelinethickness"] = random.randint(1, 100)
-        data["SweepSwitch"] = random.choice(["on", "off"])
-        # data["SweepColor"] = "1-0-#FFF000"
-        data["Sweepdirection"] = random.choice(["forward", "backward"])
-        data["Sweeprate"] = random.randint(1, 100)
+        # data["pipelineColor"] = "1-0-#000000"
+        data["pipelineThickness"] = random.randint(1, 100)
+        data["sweepSwitch"] = random.choice(["on", "off"])
+        # data["sweepColor"] = "1-0-#FFF000"
+        data["sweepDirection"] = random.choice(["forward", "backward"])
+        data["sweepRate"] = random.randint(1, 100)
         self.page_data["data"].append(data)
         return self.page_data
 
