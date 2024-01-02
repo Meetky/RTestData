@@ -11,9 +11,11 @@ async def echo(websocket, path):
         if message is None:
             break
         if message == "2d":
-            websocket.send(json.dumps(resource2d.main()))
+            return_msg = json.dumps(resource2d.main())
+            websocket.send(return_msg)
         elif message == "sign":
-            websocket.send(json.dumps(sign.main(3)))
+            return_msg = json.dumps(sign.main(3))
+            websocket.send(return_msg)
         else:
             await websocket.send("Unknown Message")
 
