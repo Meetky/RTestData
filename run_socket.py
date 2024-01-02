@@ -11,12 +11,14 @@ async def echo(websocket, path):
         print(type(message))
         if message is None:
             break
-        if message == "2d":
-            return_msg = json.dumps(resource2d.main())
-            await websocket.send(return_msg)
-        elif message == "sign":
-            return_msg = json.dumps(sign.main(3))
-            await websocket.send(return_msg)
+        if "sub_topic" in message:
+            message = json.loads(message)
+            if message["body"]["sub_topic"] == "2d":
+                return_msg = json.dumps(resource2d.main())
+                await websocket.send(return_msg)
+            elif message["body"]["sub_topic"] == "sign":
+                return_msg = json.dumps(sign.main(3))
+                await websocket.send(return_msg)
         else:
             await websocket.send("Unknown Message")
 
