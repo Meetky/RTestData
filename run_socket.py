@@ -8,6 +8,7 @@ async def echo(websocket, path):
     while True:
         message = await websocket.recv()
         print(message)
+        print(type(message))
         if message is None:
             break
         if message == "2d":
