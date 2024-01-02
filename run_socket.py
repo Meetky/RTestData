@@ -8,12 +8,10 @@ async def echo(websocket, path):
     while True:
         message = await websocket.recv()
         try:
-            # 检查消息是否是有效的JSON字符串
-            message = json.loads(message)
-            if not isinstance(message, dict):
-                raise ValueError("Invalid message format")
             if "sub_topic" not in message:
                 raise ValueError("Missing 'sub_topic' field")
+            # 检查消息是否是有效的JSON字符串
+            message = json.loads(json.loads(message)["body"])
             sub_topic = message["sub_topic"]
             if not isinstance(sub_topic, list):
                 raise ValueError("Invalid 'sub_topic' format")
