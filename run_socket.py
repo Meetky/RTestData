@@ -28,6 +28,7 @@ async def echo(websocket, path):
             except ValueError as e:
                 print(f"Error processing message: {e}")
                 await websocket.send("Invalid message format")
+            await websocket.send("Client disconnected unexpectedly.")
     except websockets.ConnectionClosedOK:
         await websocket.send("Client disconnected unexpectedly.")
 
