@@ -5,7 +5,7 @@ import websockets
 
 
 async def echo(websocket, path):
-    return_msg_fmd = '{"ver": 1, "operation": 9, "body": "{}", "topic": "{}"}'
+    return_msg_fmd = '{"ver": 1, "operation": 9, "body": {}, "topic": {}}'
     while True:
         message = await websocket.recv()
         print(message)
