@@ -13,20 +13,28 @@ async def echo(websocket, path):
                 break
             try:
                 if "sub_topic" not in message:
-                    raise ValueError("Missing 'sub_topic' field")
-                message = json.loads(json.loads(message)["body"])
-                sub_topic = message["sub_topic"]
-                if sub_topic:
-                    await websocket.send(message)
-                # if sub_topic[0] == "2d":
-                #     return_msg = json.dumps(resource2d.main())
-                #     await websocket.send(return_msg)
-                # elif sub_topic[0] == "sign":
-                #     return_msg = json.dumps(sign.main(3))
-                #     await websocket.send(return_msg)
+                    if str(message) == "2d":
+                        await websocket.send(json.dumps(resource2d.main()))
+                    elif str(message) == "表格":
+                        await websocket.send(json.dumps(form.main_user(16)))
+                    elif str(message) == "标记":
+                        await websocket.send(json.dumps(sign.main(3)))
+                    elif str(message) == "飞线":
+                        await websocket.send(json.dumps(flyline.main(3)))
+                    else:
+                        await websocket.send("Unknown Message")
+                elif "sub_topic" in message:
+                    message = json.loads(json.loads(message)["body"])
+                    sub_topic = message["sub_topic"]
+                    if sub_topic[0] == "2d":
+                        return_msg = json.dumps(resource2d.main())
+                        await websocket.send(return_msg)
+                    elif sub_topic[0] == "sign":
+                        return_msg = json.dumps(sign.main(3))
+                        await websocket.send(return_msg)
                 else:
                     await websocket.send("Unknown Message")
-            except ValueError as e:
+            except Exception as e:
                 print(f"Error processing message: {e}")
                 await websocket.send("Invalid message format")
     except websockets.ConnectionClosedOK:
