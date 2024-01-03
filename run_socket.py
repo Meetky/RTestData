@@ -8,7 +8,7 @@ async def echo(websocket, path):
     while True:
         message = await websocket.recv()
         print(message)
-        if json.loads(message)["body"] is None:
+        if message is None:
             break
         try:
             if "sub_topic" not in message:
@@ -39,11 +39,13 @@ async def echo(websocket, path):
             else:
                 await websocket.send(
                     json.dumps({"ver": 1, "operation": 9, "body": ["Unknown Message"], "topic": "Unknown Message"}))
+                break
         except Exception as e:
             print(f"Error processing message: {e}")
             await websocket.send(
                 json.dumps(
                     {"ver": 1, "operation": 9, "body": ["Invalid message format"], "topic": "Invalid message format"}))
+            break
 
 
 start_server = websockets.serve(echo, "0.0.0.0", 7071)
