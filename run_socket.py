@@ -29,6 +29,8 @@ async def echo(websocket, path):
                         json.dumps({"ver": 1, "operation": 9, "body": ["Unknown Message"], "topic": "Unknown Message"}))
             elif "sub_topic" in message:
                 message = json.loads(json.loads(message)["body"])
+                if message == "":
+                    break
                 sub_topic = message["sub_topic"]
                 if sub_topic[0] == "2d":
                     await websocket.send(
