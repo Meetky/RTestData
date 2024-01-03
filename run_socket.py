@@ -5,11 +5,10 @@ import websockets
 
 
 async def echo(websocket, path):
-    return_msg_fmt = {"ver": 1, "operation": 9, "body": [], "topic": ""}
     while True:
         message = await websocket.recv()
         print(message)
-        if message is None:
+        if json.loads(message)["body"] is None:
             break
         try:
             if "sub_topic" not in message:
@@ -18,13 +17,13 @@ async def echo(websocket, path):
                         json.dumps({"ver": 1, "operation": 9, "body": [resource2d.main()], "topic": str(message)}))
                 elif str(message) == "表格":
                     await websocket.send(
-                        json.dumps({"ver": 1, "operation": 9, "body": [resource2d.main()], "topic": str(message)}))
+                        json.dumps({"ver": 1, "operation": 9, "body": [form.main_user(16)], "topic": str(message)}))
                 elif str(message) == "标记":
                     await websocket.send(
                         json.dumps({"ver": 1, "operation": 9, "body": [sign.main(3)], "topic": str(message)}))
                 elif str(message) == "飞线":
                     await websocket.send(
-                        json.dumps({"ver": 1, "operation": 9, "body": [resource2d.main()], "topic": str(message)}))
+                        json.dumps({"ver": 1, "operation": 9, "body": [flyline.main(3)], "topic": str(message)}))
                 else:
                     await websocket.send(
                         json.dumps({"ver": 1, "operation": 9, "body": ["Unknown Message"], "topic": "Unknown Message"}))
