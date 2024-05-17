@@ -7,6 +7,7 @@
 # @Software :PyCharm
 import json
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 import random
 
@@ -134,9 +135,9 @@ def get_data(request):
         return HttpResponse(json.dumps(data))
     elif request.method == "POST":
         headers_dict = {k: v for k, v in request.headers.items()}
-        data["headers"] = json.dumps(headers_dict)
-        data["body"] = request.body.decode()
-        return HttpResponse(json.dumps(data))
+        data["headers"] = headers_dict
+        data["body"] = json.loads(request.body.decode())
+        return JsonResponse(data)
 
 
 @csrf_exempt
