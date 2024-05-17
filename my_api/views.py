@@ -133,7 +133,10 @@ def get_data(request):
             data["data"] = request.path_info.split("/")[-1]
         return HttpResponse(json.dumps(data))
     elif request.method == "POST":
-        return HttpResponse(request.body)
+        headers_dict = {k: v for k, v in request.headers.items()}
+        data["headers"] = json.dumps(headers_dict)
+        data["body"] = request.body.decode()
+        return HttpResponse(json.dumps(data))
 
 
 @csrf_exempt
