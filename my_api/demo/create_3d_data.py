@@ -94,19 +94,19 @@ class Generation3DData(DataBase):
         return self.page_data
 
     def gis(self, num):
-    for n in range(num):
-        data = copy.deepcopy(self.data)
-        data["id"] = n
-        data["position"] = [
-            101.76547413595074 + random.uniform(0.1, 10),
-            34.290014255274805 + random.uniform(0.1, 10),
-            0.01 + random.uniform(0.1, 1)
-        ]
-        data["title"] = "主标题文字区" + str(n)
-        self.page_data["data"].append(data)
-
-    self.page_data["total"] = num
-    return self.page_data
+        for n in range(num):
+            data = copy.deepcopy(self.data)
+            data["id"] = n
+            data["position"] = [
+                101.76547413595074 + random.uniform(0.1, 10),
+                34.290014255274805 + random.uniform(0.1, 10),
+                0.01 + random.uniform(0.1, 1)
+            ]
+            data["title"] = "主标题文字区" + str(n)
+            self.page_data["data"].append(data)
+    
+        self.page_data["total"] = num
+        return self.page_data
 
 
 if __name__ == '__main__':
