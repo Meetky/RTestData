@@ -44,4 +44,5 @@ urlpatterns = [
     url(r'glb', views.glb_skeletal_animation_data, name="GLB骨骼动画"),
     url(r'res', views.get_2d_resource, name="2d资源"),
     url(r'timer', views.timer_shaft, name="时间轴"),
+    url(r'gis_data', views.gis_data, name="git数据"),
 ]
