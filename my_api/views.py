@@ -503,3 +503,25 @@ def timer_shaft(request):
     else:
         gen.page_data["msg"] = "方法错误"
         return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
+
+@csrf_exempt
+def gis_data(request):
+    """
+        gis数据
+    """
+    gen = Generation3DData()
+    if request.method == 'GET' or request.method == 'POST':
+        try:
+            a = int(request.GET.get('a'))
+            if a == 0:
+                raise ValueError
+            gen.gis(a)
+            return HttpResponse(json.dumps(gen.page_data))
+        except:
+            gen.gis(random.randint(1, 50))
+            return HttpResponse(json.dumps(gen.page_data))
+    else:
+        gen.page_data['code'] = '10000'
+        gen.page_data["msg"] = "方法错误"
+        return HttpResponse(json.dumps(gen.page_data, ensure_ascii=False))
+
